@@ -8,7 +8,8 @@ const checkStock = async () => {
   const browser = await puppeteer.launch({executablePath: 'chromium-browser'});
   const page = await browser.newPage();
   await page.goto('https://www.nike.com/t/blazer-low-leather-mens-shoe-4KCkNr/CI6377-108');
-  let inStock = await page.evaluate(async () => !document.getElementById('skuAndSize__24950399').disabled);
+  const productId = 'skuAndSize__24950399'
+  let inStock = await page.evaluate(async () => !document.getElementById(productId).disabled);
   await browser.close();
   return inStock
 };
